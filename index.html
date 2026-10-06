@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Um convite 👀</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #d9ecff;
+
+            font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+
+            overflow: hidden;
+        }
+
+        .caixa {
+            background: white;
+
+            width: 90%;
+            max-width: 500px;
+
+            padding: 35px 25px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0, 80, 160, 0.15);
+        }
+
+        .gif {
+            width: 180px;
+            height: 180px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+        }
+
+        h1 {
+            color: #2684d9;
+
+            font-size: 28px;
+
+            margin: 20px 0 10px;
+        }
+
+        p {
+            color: #555;
+
+            font-size: 18px;
+
+            margin: 8px 0;
+        }
+
+        .botoes {
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+        }
+
+        button {
+            border: none;
+
+            padding: 13px 25px;
+
+            border-radius: 15px;
+
+            font-size: 18px;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        #sim {
+            background: #3d9bea;
+
+            color: white;
+        }
+
+        #sim:hover {
+            transform: scale(1.1);
+
+            background: #187fd0;
+        }
+
+        #nao {
+            background: #e1e1e1;
+
+            color: #555;
+
+            position: relative;
+        }
+
+        #mensagem {
+            display: none;
+
+            margin-top: 25px;
+
+            color: #2684d9;
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .coracoes {
+            position: fixed;
+
+            pointer-events: none;
+
+            animation: subir 2s linear forwards;
+        }
+
+        @keyframes subir {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="caixa">
+
+        <!-- GIF DE GATO -->
+        <img
+            class="gif"
+            src="https://media1.tenor.com/m/aGj-frNYMFEAAAAC/cat-cat-dance.gif"
+            alt="gatinho fofo"
+        >
+
+
+        <h1>
+            você pode sair comigo sábado?
+        </h1>
+
+
+        <p>
+            bora comemorar nossos 5 meses?
+        </p>
+
+        <p>
+            prometo que vai ser legal kkkkkk
+        </p>
+
+
+        <div class="botoes">
+
+            <button id="sim" onclick="aceitou()">
+                SIM ❤️
+            </button>
+
+            <button id="nao">
+                NÃO 😭
+            </button>
+
+        </div>
+
+
+        <div id="mensagem">
+
+            EBAAA 
+
+            <br><br>
+
+            então sábado é nosso hhaha
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const botaoNao =
+            document.getElementById("nao");
+
+
+        /*
+        ====================================
+        BOTÃO NÃO FOGE
+        ====================================
+        */
+
+        function fugir() {
+
+            const largura =
+                window.innerWidth -
+                botaoNao.offsetWidth;
+
+            const altura =
+                window.innerHeight -
+                botaoNao.offsetHeight;
+
+
+            const x =
+                Math.random() * largura;
+
+            const y =
+                Math.random() * altura;
+
+
+            botaoNao.style.position = "fixed";
+
+            botaoNao.style.left =
+                x + "px";
+
+            botaoNao.style.top =
+                y + "px";
+        }
+
+
+        // PC
+        botaoNao.addEventListener(
+            "mouseover",
+            fugir
+        );
+
+
+        // Celular
+        botaoNao.addEventListener(
+            "touchstart",
+            fugir
+        );
+
+
+
+        /*
+        ====================================
+        QUANDO CLICAR NO SIM
+        ====================================
+        */
+
+        function aceitou() {
+
+            document.querySelector(
+                ".botoes"
+            ).style.display = "none";
+
+
+            document.querySelector(
+                "h1"
+            ).innerHTML =
+                "AAAAA VC ACEITOU";
+
+
+            document.querySelector(
+                "p"
+            ).innerHTML =
+                "sábado então, nao tem mais volta KKKKK";
+
+
+            document.querySelectorAll(
+                "p"
+            )[1].style.display = "none";
+
+
+            document.getElementById(
+                "mensagem"
+            ).style.display = "block";
+
+
+            /*
+            ====================================
+            CHUVA DE CORAÇÕES
+            ====================================
+            */
+
+            for (let i = 0; i < 40; i++) {
+
+                const coracao =
+                    document.createElement("div");
+
+
+                coracao.innerHTML = "💙";
+
+
+                coracao.classList.add(
+                    "coracoes"
+                );
+
+
+                coracao.style.left =
+                    Math.random() * 100 +
+                    "vw";
+
+
+                coracao.style.top =
+                    "100vh";
+
+
+                coracao.style.fontSize =
+                    (15 + Math.random() * 30) +
+                    "px";
+
+
+                coracao.style.animationDuration =
+                    (1 + Math.random() * 2) +
+                    "s";
+
+
+                document.body.appendChild(
+                    coracao
+                );
+
+
+                setTimeout(() => {
+
+                    coracao.remove();
+
+                }, 3000);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
